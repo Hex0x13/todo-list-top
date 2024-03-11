@@ -1,35 +1,24 @@
-import renderTodos from './todos';
-import renderNotes from './notes';
-import renderProjects from './projects';
+import { toggleActive } from './function';
+import { showAllTodo } from './todo-list';
+import { showTodayTodo } from './todo-list';
+import { showThisWeekTodo } from './todo-list';
 
-const todosBtn = document.querySelector('.todos');
-const notesBtn = document.querySelector('.notes');
-const projectsBtn = document.querySelector('.projects');
+const allBtn = document.querySelector('.all');
+const todayBtn = document.querySelector('.today');
+const weekBtn = document.querySelector('.week');
 
-todosBtn.addEventListener('click', showTodos);
-notesBtn.addEventListener('click', showNotes);
-projectsBtn.addEventListener('click', showProjects)
+allBtn.onclick = showAll;
+todayBtn.onclick = showToday;
+weekBtn.onclick = showWeek;
 
-function toggleActive(elem) {
-    if (!elem.classList.contains('active')) {
-        todosBtn.classList.remove('active');
-        notesBtn.classList.remove('active');
-        projectsBtn.classList.remove('active');
-        elem.classList.add('active');
-    }
+function showAll() {
+    toggleActive(allBtn, showAllTodo);
 }
 
-function showTodos() {
-    renderTodos(todosBtn);
-    toggleActive(todosBtn);
+function showToday() {
+    toggleActive(todayBtn, showTodayTodo);
 }
 
-function showNotes() {
-    renderNotes(notesBtn);
-    toggleActive(notesBtn);
-}
-
-function showProjects() {
-    renderProjects(projectsBtn);
-    toggleActive(projectsBtn);
+function showWeek() {
+    toggleActive(weekBtn, showThisWeekTodo);
 }
