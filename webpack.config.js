@@ -11,7 +11,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: 'src/template.html',
-            inject: 'body',
+            inject: 'head',
+            scriptLoading: 'defer',
         }),
     ],
     mode: 'development',
@@ -20,10 +21,6 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
-            },
-            {
-                test: /\.html$/i,
-                use: ['html-loader'],
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
