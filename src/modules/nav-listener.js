@@ -1,3 +1,7 @@
+import renderTodos from './todos';
+import renderNotes from './notes';
+import renderProjects from './projects';
+
 const todosBtn = document.querySelector('.todos');
 const notesBtn = document.querySelector('.notes');
 const projectsBtn = document.querySelector('.projects');
@@ -16,13 +20,16 @@ function toggleActive(elem) {
 }
 
 function showTodos() {
+    renderTodos(todosBtn);
     toggleActive(todosBtn);
 }
 
 function showNotes() {
+    renderNotes(notesBtn);
     toggleActive(notesBtn);
 }
 
 function showProjects() {
+    renderProjects(projectsBtn);
     toggleActive(projectsBtn);
 }
