@@ -23,12 +23,23 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                test: /\.svg$/i,
+                loader: 'svg-inline-loader',
+                options: {
+                    xml: false,
+                    removeTags: true,
+                    removingTags: ['title', 'desc', 'defs', 'style'],
+                    removeSVGTagAttrs: true,
+                    removingTagAttrs: ['width', 'height', 'class', 'stroke', 'fill'],
+                }
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/i,
                 use: {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: 'image',
+                        outputPath: 'assets/icons',
                     },
                 },
             },

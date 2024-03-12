@@ -1,3 +1,6 @@
+import deleteIcon from '../assets/icons/delete-icon.svg';
+import editIcon from '../assets/icons/edit-icon.svg';
+
 let todos = [
     {
         title: 'Go to beach',
@@ -23,7 +26,9 @@ let todos = [
 ];
 
 const content = document.querySelector('.content');
-
+const addBtn = document.createElement('button');
+addBtn.classList.add('add-btn');
+addBtn.textContent = 'Add';
 
 function createTodoItem(id, todo) {
     /* Todo item structure:
@@ -39,25 +44,26 @@ function createTodoItem(id, todo) {
     const todoItem = document.createElement('div');
     const checkBtn = document.createElement('input');
     const title = document.createElement('label');
-    const detailsBtn = document.createElement('button');
     const dueDate = document.createElement('span');
     const editBtn = document.createElement('button');
     const deleteBtn = document.createElement('button');
 
-    checkBtn.type = 'checkbox';
+    todoItem.classList.add('todo-item');
     todoItem.id = id;
+    checkBtn.type = 'checkbox';
     checkBtn.id = `item-${id}`;
-    title.setAttribute('for', checkBtn.id);
+    title.classList.add('title');
 
     title.textContent = todo.title;
-    detailsBtn.textContent = 'details';
-    dueDate.textContent = todo.dueDate;
-    editBtn.textContent = 'edit';
-    deleteBtn.textContent = 'delete';
+    dueDate.textContent = todo.due_date;
+    dueDate.classList.add('due-date');
+    editBtn.classList.add('edit-btn');
+    editBtn.innerHTML = editIcon;
+    deleteBtn.classList.add('delete-btn')
+    deleteBtn.innerHTML = deleteIcon;
 
     todoItem.appendChild(checkBtn);
     todoItem.appendChild(title);
-    todoItem.appendChild(detailsBtn);
     todoItem.appendChild(dueDate);
     todoItem.appendChild(editBtn);
     todoItem.appendChild(deleteBtn);
@@ -78,6 +84,7 @@ function showAllTodo() {
         );
         content.appendChild(todoItem);
     });
+    content.appendChild(addBtn);
 }
 
 function showTodayTodo() {

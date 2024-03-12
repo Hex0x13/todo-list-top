@@ -1,0 +1,166 @@
+:root {
+    --black: #222831;
+    --lighter-black: #31363f;
+    --cyan: #76ABAE;
+    --dirty-white: #EEEEEE;
+    --side-bar-w: 200px;
+    --todo-btn-geometry: 16px;
+    --todo-btn-w: 20px;
+    --todo-btn-hover-color: cyan;
+}
+
+html,
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: var(--lighter-black);
+    color: var(--dirty-white);
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: var(--side-bar-w) 1fr;
+    grid-template-rows: 80px 1fr;
+}
+
+.header {
+    background: var(--black);
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    box-shadow: inset 0px -3px 5px -4px rgb(255, 255, 255);
+}
+
+.side-bar button {
+    margin: 2px 10px;
+    font-weight: 100;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    user-select: none;
+    width: calc(var(--side-bar-w) - 20px);
+    text-align: left;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.side-bar {
+    margin-top: 10px;
+    border-right: 1px solid var(--black);
+}
+
+.nav-list-filter .active {
+    filter: brightness(0.9);
+    font-weight: 500;
+}
+
+.side-bar button:hover:not(.active) {
+    filter: brightness(0.9);
+}
+
+.side-bar button:active:not(.active) {
+    transform: translate(-1px, -1px);
+}
+
+.project-header {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 20px 0 5px 20px;
+    cursor: default;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.content {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-item {
+    width: 600px;
+    background-color: var(--black);
+    margin: 5px;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 15px 1fr 74px var(--todo-btn-w) var(--todo-btn-w);
+    padding: 10px 15px;
+    gap: 10px;
+}
+
+.todo-item * {
+    background-color: transparent;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.todo-item .due-date {
+    font-size: 14px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.edit-btn,
+.delete-btn {
+    border: none;
+    background: transparent;
+}
+
+.edit-btn svg,
+.delete-btn svg {
+    width: var(--todo-btn-geometry);
+    height: var(--todo-btn-geometry);
+    transition: all 600ms;
+}
+
+.delete-btn svg {
+    fill: var(--dirty-white);
+}
+
+.edit-btn svg {
+    stroke: var(--dirty-white);
+    fill: transparent;
+}
+
+.delete-btn svg:hover {
+    fill: var(--todo-btn-hover-color);
+}
+
+.edit-btn svg:hover {
+    stroke: var(--todo-btn-hover-color);
+}
+
+.delete-btn svg:active,
+.edit-btn svg:active {
+    transform: scale(1.4);
+}
+
+.due-date:active {
+    transform: scale(1.02);
+}
+
+.todo-item .title:active {
+    transform: scale(1.005);
+}
+
+.add-btn {
+    margin-top: 10px;
+    padding: 10px;
+    width: 300px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--black);
+    cursor: pointer;
+}
