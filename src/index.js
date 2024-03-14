@@ -1,7 +1,7 @@
 import './assets/styles/style.css';
 import './modules/nav-listener';
-import { showAllTodo } from './modules/todo-list';
+import { showAllTask } from './modules/todo-list';
 
 window.onload = () => {
-    showAllTodo();
+    showAllTask();
 }
