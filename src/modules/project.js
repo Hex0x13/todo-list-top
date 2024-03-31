@@ -1,8 +1,11 @@
 export default class Project {
-    constructor(id, name) {
-        this.id = id;
+    constructor(name) {
         this.name = name;
         this.tasks = [];
+    }
+
+    addTaskList(tasks) {
+        this.tasks.push(...tasks);
     }
 
     addTask(task) {
@@ -25,7 +28,7 @@ export default class Project {
         });
     }
 
-    getTasks() {
+    getAllTask() {
         return this.tasks;
     }
 }

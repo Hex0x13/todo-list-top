@@ -2,8 +2,13 @@ import Task from './task';
 import Project from './project'
 import deleteIcon from '../assets/icons/delete-icon.svg';
 import editIcon from '../assets/icons/edit-icon.svg';
+import ProjectList from './projectList';
+import createAddTaskBtn from './add-task-modal';
+
+
 let taskID = 1;
 let projectID = 1;
+const projectList = ProjectList.getInstance();
 
 function autoIncrementTaskID() {
     const tmp = taskID;
@@ -17,7 +22,8 @@ function autoIncrementProjectID() {
     return tmp;
 }
 
-let ungroupTask = [
+const ungroupTask = new Project('Ungroup');
+ungroupTask.addTaskList([
     new Task({
         id: autoIncrementTaskID(),
         title: 'Go to beach',
@@ -42,15 +48,13 @@ let ungroupTask = [
         priority: 'medium',
         done: false
     })
-];
+]);
 
-let projects = [];
+
+projectList.add(autoIncrementProjectID(), ungroupTask);
 
 const taskContent = document.querySelector('.content');
 const projectContent = document.querySelector('.nav-list-projects');
-const addBtn = document.createElement('button');
-addBtn.classList.add('add-btn');
-addBtn.textContent = 'Add';
 
 function createTaskElement(id, task) {
     /* Todo item structure:
@@ -70,7 +74,7 @@ function createTaskElement(id, task) {
     const editBtn = document.createElement('button');
     const deleteBtn = document.createElement('button');
 
-    todoItem.classList.add('todo-item');
+    todoItem.classList.add('task');
     todoItem.id = id;
     checkBtn.type = 'checkbox';
     checkBtn.id = `item-${id}`;
@@ -98,18 +102,18 @@ function clearTasks() {
 }
 function createProjectElement(project) {
     const projectContainer = document.createElement('div');
-    const projectName = document.createElement('h3');
-    // const deleteButton = document.createElement('button');
+    const projectName = document.createElement('button');
+    const deleteButton = document.createElement('button');
 
     projectContainer.classList.add('project-container');
     projectName.classList.add('project-name');
-    // deleteButton.classList.add('delete-project-btn');
+    deleteButton.classList.add('delete-project-btn');
 
     projectName.textContent = project.name;
-    // deleteButton.innerHTML = deleteIcon;
+    deleteButton.innerHTML = deleteIcon;
 
     projectContainer.appendChild(projectName);
-    // projectContainer.appendChild(deleteButton);
+    projectContainer.appendChild(deleteButton);
     return projectContainer;
 }
 
@@ -119,14 +123,16 @@ function clearProjectContent() {
 
 function showAllTask() {
     clearTasks();
-    ungroupTask.forEach((task, index) => {
-        const taskElement = createTaskElement(
-            index,
-            task
-        );
-        taskContent.appendChild(taskElement);
+    projectList.getAll().forEach((project) => {
+        project.getAllTask().forEach((task, index) => {
+            const taskElement = createTaskElement(
+                index,
+                task
+            );
+            taskContent.appendChild(taskElement);
+        });
     });
-    taskContent.appendChild(addBtn);
+    taskContent.appendChild(createAddTaskBtn());
 }
 
 function showTodayTask() {
@@ -140,13 +146,13 @@ function showThisWeekTask() {
 }
 
 function addNewProject(name) {
-    projects.push(new Project(autoIncrementProjectID(), name));
+    projectList.add(autoIncrementProjectID(), new Project(name));
     renderProjects();
 }
 
 function renderProjects() {
     clearProjectContent();
-    for (let project of projects) {
+    for (const project of projectList.getAll()) {
         projectContent.appendChild(createProjectElement(project));
     }
 }
@@ -155,5 +161,6 @@ export {
     showAllTask,
     showTodayTask,
     showThisWeekTask,
-    addNewProject
+    addNewProject,
+    renderProjects
 };

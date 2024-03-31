@@ -27,5 +27,46 @@
             </div>
         </nav>
         <main class="content"></main>
+        <div id="add-task-modal" class="modal">
+            <div class="modal-content" tabindex="-1" aria-hidden="true">
+                <span class="close">&times;</span>
+                <form>
+                    <div class="task-input">
+                        <label for="title">
+                            Title:
+                        </label>
+                        <input type="text" name="title" id="title" required>
+                    </div>
+                    <div class="task-input">
+                        <label for="description">
+                            Description:
+                        </label>
+                        <input type="text" name="description" id="description">
+                    </div>
+                    <div class="task-input">
+                        <label for="due-date">
+                            Due:
+                        </label>
+                        <input type="date" name="due-date" id="due-date">
+                    </div>
+                    <div class="task-input">
+                            <span>Priority:</span>
+                            <input type="radio" name="priority" id="low" value="low">
+                            <label for="low">low</label>
+                            <input type="radio" name="priority" id="medium" value="medium">
+                            <label for="medium">medium</label>
+                            <input type="radio" name="priority" id="high" value="high">
+                            <label for="high">high</label>
+                    </div>
+                    <div class="task-input">
+                        <label for="task-project">Project:</label>
+                        <select name="task-project" id="task-project">
+                            <option value="none">none</option>
+                        </select>
+                    </div>
+                    <input type="submit" name="save-task" id="save-task" value="save">
+                </form>
+            </div>
+        </div>
     </body>
 </html>

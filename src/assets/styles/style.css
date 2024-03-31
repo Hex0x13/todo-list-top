@@ -9,6 +9,7 @@
     --todo-btn-hover-color: cyan;
     --todo-checkbox-geometry: 15px;
     --todo-item-gap: 10px;
+    --project-delete-btn-size: 12px;
 }
 
 html,
@@ -74,7 +75,7 @@ body {
 .project-header {
     font-size: 22px;
     font-weight: 600;
-    margin: 20px 0 5px 20px;
+    padding: 20px 0px 10px 20px;
     cursor: default;
     user-select: none;
     -moz-user-select: none;
@@ -88,23 +89,19 @@ body {
     align-items: center;
 }
 
-.todo-item {
+.task {
     width: 600px;
     background-color: var(--black);
     margin: 5px;
     border-radius: 5px;
     display: grid;
     grid-template-columns:
-        var(--todo-checkbox-geometry)
-        1fr
-        74px
-        var(--todo-btn-w)
-        var(--todo-btn-w);
+        var(--todo-checkbox-geometry) 1fr 74px var(--todo-btn-w) var(--todo-btn-w);
     padding: 10px 15px;
     gap: var(--todo-item-gap);
 }
 
-.todo-item * {
+.task * {
     background-color: transparent;
     font-size: 16px;
     display: flex;
@@ -112,7 +109,7 @@ body {
     cursor: pointer;
 }
 
-.todo-item .due-date {
+.task .due-date {
     font-size: 14px;
     user-select: none;
     -moz-user-select: none;
@@ -174,23 +171,23 @@ input[type="checkbox"] {
     z-index: 1;
 }
 
-input[type="checkbox"] + label {
+input[type="checkbox"]+label {
     position: relative;
 }
 
-input[type="checkbox"] + label::before {
+input[type="checkbox"]+label::before {
     content: '';
     width: var(--todo-checkbox-geometry);
     height: var(--todo-checkbox-geometry);
     position: absolute;
     top: 1px;
-    left: calc( calc(var(--todo-checkbox-geometry) + var(--todo-item-gap)) * -1);
+    left: calc(calc(var(--todo-checkbox-geometry) + var(--todo-item-gap)) * -1);
     background: white;
     border: 1px solid white;
     border-radius: 3px;
 }
 
-input[type="checkbox"]:checked + label::before {
+input[type="checkbox"]:checked+label::before {
     content: '\002714';
     font-size: 11px;
     font-weight: 100;
@@ -201,7 +198,7 @@ input[type="checkbox"]:checked + label::before {
     justify-content: center;
 }
 
-input[type="checkbox"]:checked + label {
+input[type="checkbox"]:checked+label {
     text-decoration: line-through;
     color: gray;
 }
@@ -232,7 +229,7 @@ input[type="checkbox"]:checked + label {
 
 .add-project-input {
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "name-input name-input"
         "add-button cancel-button";
     justify-content: center;
@@ -275,13 +272,101 @@ input[type="checkbox"]:checked + label {
     display: none;
 }
 
-.project-container {
-    height: 20px;
-    width: 80%;
-    margin-left: 30px;
+
+.nav-list-projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
 }
 
-.project-name {
-    font-size: 16px;
-    font-weight: 100;
+.project-container {
+    height: 20px;
+    width: 180px;
+    padding: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.26);
+}
+
+.project-container .project-name {
+    width: 148px;
+    font-size: 14px;
+    font-weight: 500;
+    overflow: hidden;
+    padding: 10px 0px 10px 10px;
+    margin: 2px 10px 2px 0px;
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-wrap: nowrap;
+}
+
+.project-container .delete-project-btn {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    display: inline-block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    width: var(--project-delete-btn-size);
+    height: inherit;
+}
+
+.delete-project-btn svg {
+    width: var(--project-delete-btn-size);
+    height: var(--project-delete-btn-size);
+    transition: all 600ms;
+    margin: 0;
+    padding: 0;
+}
+
+.delete-project-btn svg {
+    fill: var(--dirty-white);
+}
+
+.delete-project-btn svg:hover {
+    fill: var(--todo-btn-hover-color);
+}
+
+.delete-project-btn svg:active {
+    transform: scale(1.4);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
