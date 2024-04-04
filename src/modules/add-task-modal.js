@@ -1,3 +1,5 @@
+import './../assets/styles/add-task-modal.css';
+
 const modal = document.getElementById('add-task-modal');
 const closeSpan = document.querySelector('.close');
 const modalInputs = Array.from(modal.querySelectorAll('input,select'));

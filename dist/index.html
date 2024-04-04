@@ -1,72 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>TODO</title>
-    <script defer src="main.js"></script></head>
-    <body>
-        <header class="header">
-            <h1 class="logo">TODO</h1>
-        </header>
-        <nav class="side-bar">
-            <div class="nav-list-filter">
-                <button class="all active">All</button>
-                <button class="today">Today</button>
-                <button class="week">Week</button>
-            </div>
-            <h2 class="project-header">Projects</h2>
-            <div class="nav-list-projects"></div>
-            <button class="add-project-btn">
-                Add Project
-            </button>
-            <div class="add-project-input hide-element">
-                <input type="text" placeholder="Project Name">
-                <button class="add-button">Add</button>
-                <button class="cancel-button">Cancel</button>
-            </div>
-        </nav>
-        <main class="content"></main>
-        <div id="add-task-modal" class="modal">
-            <div class="modal-content" tabindex="-1" aria-hidden="true">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TODO</title>
+<script defer src="main.js"></script></head>
+
+<body>
+    <header class="header">
+        <h1 class="logo">TODO</h1>
+    </header>
+    <nav class="side-bar">
+        <div class="nav-list-filter">
+            <button class="all active">All</button>
+            <button class="today">Today</button>
+            <button class="week">Week</button>
+        </div>
+        <h2 class="project-header">Projects</h2>
+        <div class="nav-list-projects"></div>
+        <button class="add-project-btn">
+            Add Project
+        </button>
+        <div class="add-project-input hide-element">
+            <input type="text" placeholder="Project Name">
+            <button class="add-button">Add</button>
+            <button class="cancel-button">Cancel</button>
+        </div>
+    </nav>
+    <main class="content"></main>
+    <div id="add-task-modal" class="modal">
+        <div class="modal-content" tabindex="-1" aria-hidden="true">
+            <div class="modal-header">
+                <h3>New task...</h3>
                 <span class="close">&times;</span>
-                <form>
-                    <div class="task-input">
-                        <label for="title">
-                            Title:
-                        </label>
-                        <input type="text" name="title" id="title" required>
-                    </div>
-                    <div class="task-input">
-                        <label for="description">
-                            Description:
-                        </label>
-                        <input type="text" name="description" id="description">
-                    </div>
-                    <div class="task-input">
+            </div>
+            <form>
+                <textarea name="title" id="title" placeholder="Title" maxlength="65" required></textarea>
+
+                <textarea type="" name="description" id="description" maxlength="355" placeholder="Description..."></textarea>
+                <div class="form-footer">
+                    <span class="task-input">
                         <label for="due-date">
-                            Due:
+                            Due Date:
                         </label>
-                        <input type="date" name="due-date" id="due-date">
-                    </div>
-                    <div class="task-input">
-                            <span>Priority:</span>
-                            <input type="radio" name="priority" id="low" value="low">
-                            <label for="low">low</label>
-                            <input type="radio" name="priority" id="medium" value="medium">
-                            <label for="medium">medium</label>
-                            <input type="radio" name="priority" id="high" value="high">
-                            <label for="high">high</label>
-                    </div>
-                    <div class="task-input">
+                        <input type="date" name="due-date" id="due-date" required>
+                    </span>
+                    <span class="task-input">
                         <label for="task-project">Project:</label>
                         <select name="task-project" id="task-project">
                             <option value="none">none</option>
                         </select>
+                    </span>
+                    <div class="priority">
+                        <span>Priority:</span>
+                        <input type="radio" name="priority" id="low" value="low" required>
+                        <label for="low">low</label>
+                        <input type="radio" name="priority" id="medium" value="medium" required>
+                        <label for="medium">medium</label>
+                        <input type="radio" name="priority" id="high" value="high" required>
+                        <label for="high">high</label>
                     </div>
                     <input type="submit" name="save-task" id="save-task" value="save">
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
