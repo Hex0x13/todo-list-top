@@ -1,10 +1,10 @@
-const navList = document.querySelector('.nav-list-filter').children;
+
 
 function toggleActive(elem, callback, ...arg) {
     if (!elem.classList.contains('active')) {
-        for (const child of navList) {
-           child.classList.remove('active'); 
-        };
+        const activeNav = document.querySelector('.active');
+        activeNav.classList.remove('active');
+
         if (callback) {
             callback(...arg);
         }
@@ -12,4 +12,9 @@ function toggleActive(elem, callback, ...arg) {
     }
 }
 
-export { toggleActive };
+function toDate(date_str) {
+    const [year, month, day] = date_str.split('-');
+    return new Date(year, month-1, day);
+}
+
+export { toggleActive, toDate };

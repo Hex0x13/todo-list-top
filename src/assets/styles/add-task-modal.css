@@ -134,7 +134,7 @@ form input[type="submit"]:hover {
 .priority label[for="low"] {
     border: 1px solid lightseagreen;
     color: lightseagreen;
-    padding: 3px 5px;
+    padding: 3px 12px;
     border-radius: 6px;
 }
 
@@ -146,9 +146,9 @@ form input[type="submit"]:hover {
 }
 
 .priority label[for="high"] {
-    border: 1px solid rgb(240, 232, 128);
-    color: rgb(240, 232, 128);
-    padding: 3px 5px;
+    border: 1px solid rgb(233, 223, 78);
+    color: rgb(233, 223, 78);
+    padding: 3px 12px;
     border-radius: 6px;
 }
 
@@ -167,7 +167,7 @@ form input[type="submit"]:hover {
 .priority #high:checked+label {
     border-color: white;
     color: white;
-    background-color: rgb(240, 232, 128);
+    background-color: rgb(233, 223, 78);
 }
 
 .priority {

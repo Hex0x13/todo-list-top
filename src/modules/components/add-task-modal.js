@@ -1,9 +1,9 @@
-import './../assets/styles/add-task-modal.css';
+import '../../assets/styles/add-task-modal.css';
 
 const modal = document.getElementById('add-task-modal');
 const closeSpan = document.querySelector('.close');
 const modalInputs = Array.from(modal.querySelectorAll('input,select'));
-const navListProject = document.querySelector('.nav-list-projects');
+const navListProject = document.querySelector('.projects-container');
 
 function loadProjectOpts() {
     const taskProject = document.querySelector('#task-project');
@@ -35,7 +35,17 @@ window.onclick = (event) => {
     }
 }
 
-function createAddTaskBtn() {
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab' && modal.style.display === 'block') {
+        if (document.activeElement === modalInputs[modalInputs.length - 1]) {
+            document.querySelector('.add-btn').focus();
+        } else if (!modalInputs.includes(document.activeElement)) {
+            event.preventDefault();
+        }
+    }
+});
+
+function createAddTaskModal() {
     const addBtn = document.createElement('button');
     addBtn.classList.add('add-btn');
     addBtn.textContent = 'Add';
@@ -49,17 +59,7 @@ function createAddTaskBtn() {
     return addBtn;
 }
 
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Tab' && modal.style.display === 'block') {
-        if (document.activeElement === modalInputs[modalInputs.length - 1]) {
-            document.querySelector('.add-btn').focus();
-        } else if (!modalInputs.includes(document.activeElement)){
-            event.preventDefault();
-        }
-    }
-});
-
 export {
-    createAddTaskBtn,
+    createAddTaskModal,
     closeModal
 };
