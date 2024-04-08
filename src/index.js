@@ -3,9 +3,13 @@ import './modules/components/task-modal';
 import './modules/components/add-project';
 import './modules/components/filter-btn';
 import { showAllTask } from './modules/show-task';
-import './modules/todo-list';
 import './modules/components/submit-task';
+import taskLocalStorage from './modules/task-local-storage';
+import projectsContainer from './modules/components/projects-container';
+import projectManager from './modules/objects/project-manager';
 
 window.onload = () => {
+    taskLocalStorage.load();
+    projectsContainer.renderProjects();
     showAllTask();
 }

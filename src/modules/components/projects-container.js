@@ -3,6 +3,7 @@ import { createProjectElement, destroyProjectElement } from "./project-element";
 import Project from '../objects/project';
 import { toggleActiveNav } from "../functions";
 import { showAllTask, showByTaskProject } from "../show-task";
+import taskLocalStorage from '../task-local-storage';
 
 function activateProject() {
     toggleActiveNav(this, showByTaskProject, this.textContent);
@@ -51,6 +52,7 @@ class ProjectContainer {
         }
         projectManager.addProject(name, new Project(name));
         this.renderProjects();
+        taskLocalStorage.save();
     }
 
     removeProject(projectName) {
@@ -59,6 +61,7 @@ class ProjectContainer {
             toggleActiveNav(document.querySelector('.all'), showAllTask);
         }
         this.renderProjects();
+        taskLocalStorage.save();
     }
 }
 

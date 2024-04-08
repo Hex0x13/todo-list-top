@@ -3,6 +3,7 @@ import Task from '../objects/task';
 import { autoIncrement } from '../functions';
 import projectManager from '../objects/project-manager';
 import { showTaskByActive } from '../show-task';
+import taskLocalStorage from '../task-local-storage';
 
 function submit(event) {
     event.preventDefault();
@@ -26,6 +27,7 @@ function submit(event) {
         projectManager.addTaskInProject(project, task);
         showTaskByActive();
         closeModal();
+        taskLocalStorage.save();
     }
 }
 

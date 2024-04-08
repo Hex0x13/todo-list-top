@@ -3,6 +3,7 @@ import Project from "./objects/project";
 import Task from "./objects/task";
 import { autoIncrement } from "./functions";
 
+
 const ungroupTask = new Project('ungroup');
 
 ungroupTask.addList([
@@ -36,4 +37,4 @@ ungroupTask.addList([
 ]);
 
 
-projectManager.addProject(ungroupTask.name, ungroupTask)
+projectManager.addProject(ungroupTask.name, ungroupTask);

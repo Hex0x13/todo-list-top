@@ -75,7 +75,7 @@ function destroyAddTaskButton() {
     }
 }
 
-function editTask(task) {
+function showEditTask(task) {
     taskForm.elements['title'].value = task.title;
     taskForm.elements['description'].value = task.description;
     taskForm.elements['due-date'].value = formatDate(task.due_date);
@@ -95,5 +95,5 @@ export {
     createAddTaskButton,
     destroyAddTaskButton,
     closeModal,
-    editTask
+    showEditTask
 };

@@ -1,12 +1,25 @@
 import editIcon from '../../assets/icons/edit-icon.svg';
 import deleteIcon from '../../assets/icons/delete-icon.svg';
-import { editTask } from './task-modal';
+import { showEditTask } from './task-modal';
 import projectManager from '../objects/project-manager';
 import { showTaskByActive } from '../show-task';
+import taskLocalStorage from '../task-local-storage';
+
+
+function editTask(task) {
+    showEditTask(task);
+    taskLocalStorage.save();
+}
 
 function deleteTask(task) {
     projectManager.removeTaskInProject(task);
     showTaskByActive();
+    taskLocalStorage.save();
+}
+
+function markTask(task) {
+    task.done = this.checked;
+    taskLocalStorage.save();
 }
 
 function createTaskElement(task) {
@@ -20,7 +33,7 @@ function createTaskElement(task) {
     container.classList.add('task');
     container.id = task.id;
     checkBtn.type = 'checkbox';
-    checkBtn.id = `item-${task.id}`;
+    checkBtn.className = `task-done`;
     title.classList.add('title');
 
     title.textContent = task.title;
@@ -30,9 +43,11 @@ function createTaskElement(task) {
     editBtn.innerHTML = editIcon;
     deleteBtn.classList.add('delete-btn')
     deleteBtn.innerHTML = deleteIcon;
+    checkBtn.checked = task.done;
 
     editBtn.addEventListener('click', editTask.bind(editBtn, task));
     deleteBtn.addEventListener('click', deleteTask.bind(deleteBtn, task));
+    checkBtn.addEventListener('change', markTask.bind(checkBtn, task));
 
     container.appendChild(checkBtn);
     container.appendChild(title);
@@ -46,8 +61,10 @@ function createTaskElement(task) {
 function destoryTaskElement(taskElement, task) {
     const editBtn = taskElement.querySelector('.edit-btn');
     const deleteBtn = taskElement.querySelector('.delete-btn');
+    const checkBtn = taskElement.querySelector('.task-done');
     editBtn.removeEventListener('click', editTask.bind(editBtn, task));
     deleteBtn.removeEventListener('click', deleteTask.bind(deleteBtn, task));
+    checkBtn.removeEventListener('change', markTask.bind(checkBtn, task));
     taskElement.remove();
 }
 
