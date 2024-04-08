@@ -1,5 +1,13 @@
 import editIcon from '../../assets/icons/edit-icon.svg';
 import deleteIcon from '../../assets/icons/delete-icon.svg';
+import { editTask } from './task-modal';
+import projectManager from '../objects/project-manager';
+import { showTaskByActive } from '../show-task';
+
+function deleteTask(task) {
+    projectManager.removeTaskInProject(task);
+    showTaskByActive();
+}
 
 function createTaskElement(task) {
     const container = document.createElement('div');
@@ -23,6 +31,9 @@ function createTaskElement(task) {
     deleteBtn.classList.add('delete-btn')
     deleteBtn.innerHTML = deleteIcon;
 
+    editBtn.addEventListener('click', editTask.bind(editBtn, task));
+    deleteBtn.addEventListener('click', deleteTask.bind(deleteBtn, task));
+
     container.appendChild(checkBtn);
     container.appendChild(title);
     container.appendChild(dueDate);
@@ -32,7 +43,11 @@ function createTaskElement(task) {
     return container;
 }
 
-function destoryTaskElement(taskElement) {
+function destoryTaskElement(taskElement, task) {
+    const editBtn = taskElement.querySelector('.edit-btn');
+    const deleteBtn = taskElement.querySelector('.delete-btn');
+    editBtn.removeEventListener('click', editTask.bind(editBtn, task));
+    deleteBtn.removeEventListener('click', deleteTask.bind(deleteBtn, task));
     taskElement.remove();
 }
 

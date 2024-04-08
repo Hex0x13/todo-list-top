@@ -1,4 +1,4 @@
-import { closeModal } from './add-task-modal';
+import { closeModal } from './task-modal';
 import Task from '../objects/task';
 import { autoIncrement } from '../functions';
 import projectManager from '../objects/project-manager';
@@ -19,16 +19,16 @@ function submit(event) {
             description: description,
             due_date: new Date(due_date),
             priority: priority,
-            done: false
+            done: false,
+            project_name: project
         });
 
         projectManager.addTaskInProject(project, task);
         showTaskByActive();
         closeModal();
-        form.reset(); 
     }
 }
 
 
-const form = document.querySelector('.add-task-form');
+const form = document.querySelector('.task-form');
 form.addEventListener('submit', submit);

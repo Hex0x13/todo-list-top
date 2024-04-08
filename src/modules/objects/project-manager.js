@@ -21,6 +21,10 @@ class ProjectManager {
         this.projects[project].add(newtask);
     }
 
+    removeTaskInProject(task) {
+        delete this.projects[task.project_name].tasks[task.id];
+    }
+
     getProject(key) {
         return this.projects[key];
     }

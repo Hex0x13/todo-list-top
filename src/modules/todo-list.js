@@ -12,7 +12,8 @@ ungroupTask.addList([
         description: 'Just relax',
         due_date: new Date('2024-03-16'),
         priority: 'low',
-        done: false
+        done: false,
+        project_name: ungroupTask.name
     }),
     new Task({
         id: autoIncrement(),
@@ -20,7 +21,8 @@ ungroupTask.addList([
         description: 'for my science exam',
         due_date: new Date('2024-03-22'),
         priority: 'high',
-        done: false
+        done: false,
+        project_name: ungroupTask.name
     }),
     new Task({
         id: autoIncrement(),
@@ -28,7 +30,8 @@ ungroupTask.addList([
         description: '',
         due_date: new Date('2024-03-15'),
         priority: 'medium',
-        done: false
+        done: false,
+        project_name: ungroupTask.name
     })
 ]);
 

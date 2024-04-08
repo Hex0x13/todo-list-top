@@ -1,12 +1,17 @@
-import { createAddTaskModal } from "./components/add-task-modal";
+import { createAddTaskButton, destroyAddTaskButton } from "./components/task-modal";
 import projectManager from "./objects/project-manager";
-import { createTaskElement } from "./components/task-element";
+import { createTaskElement, destoryTaskElement } from "./components/task-element";
 
 
 const taskContent = document.querySelector('.content');
 
 function clearTasks() {
-    taskContent.innerHTML = '';
+    const tasksElem = document.querySelectorAll('.task');
+    const tasks = projectManager.getAllTask();
+    for (let i = 0; i < tasksElem.length; ++i) {
+        destoryTaskElement(tasksElem[i], tasks[i]);
+    }
+    destroyAddTaskButton();
 }
 
 function showAllTask() {
@@ -14,7 +19,7 @@ function showAllTask() {
     projectManager.getAllTask().forEach(element => {
         taskContent.appendChild(createTaskElement(element));
     });
-    taskContent.appendChild(createAddTaskModal());
+    taskContent.appendChild(createAddTaskButton());
 }
 
 function showByTaskProject(key) {
@@ -22,7 +27,7 @@ function showByTaskProject(key) {
     projectManager.getProjectTasks(key).forEach(element => {
         taskContent.appendChild(createTaskElement(element));
     });
-    taskContent.appendChild(createAddTaskModal());
+    taskContent.appendChild(createAddTaskButton());
 }
 
 function showTodayTask() {
@@ -40,7 +45,7 @@ function showTodayTask() {
             taskContent.appendChild(createTaskElement(element));
         }
     });
-    taskContent.appendChild(createAddTaskModal());
+    taskContent.appendChild(createAddTaskButton());
 }
 
 function showThisWeekTask() {
@@ -58,7 +63,7 @@ function showThisWeekTask() {
             taskContent.appendChild(createTaskElement(element));
         }
     });
-    taskContent.appendChild(createAddTaskModal());
+    taskContent.appendChild(createAddTaskButton());
 }
 
 function showTaskByActive() {
