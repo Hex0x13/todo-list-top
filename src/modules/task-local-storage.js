@@ -16,6 +16,9 @@ class TaskLocalStorage {
 
     load() {
         const projects = JSON.parse(localStorage.getItem(this.project));
+        if (!projects) {
+            return;
+        }
         projects.forEach(project => {
             const newProject = new Project(project.name);
             projectManager.addProject(project.name, newProject);
